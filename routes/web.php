@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('app');
-});
+// Match all routes except api to index so that react router and do frontend routing
+Route::get("{url}",  function() {
+    return view("app");
+})->middleware(['web'])->where("url", "^((?!api).)*$");
