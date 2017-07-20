@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
+import {connect} from 'react-redux';
 
 import {renderField, renderTextArea} from "./form_components"
+import {submitRequest} from "../actions/index";
 
 class ContactNew extends Component {
     constructor(props) {
@@ -11,7 +13,9 @@ class ContactNew extends Component {
     }
 
     onSubmit(values) {
-        console.log(values);
+        this.props.submitRequest(values, () => {
+
+        });
     };
 
     render() {
@@ -69,4 +73,6 @@ function validate(values) {
 export default reduxForm({
     validate,
     form: 'ContactForm'
-})(ContactNew);
+})(
+    connect(null, {submitRequest})(ContactNew)
+);
