@@ -5,9 +5,9 @@
 {{$support->name}}
 ### Email :
 {{$support->email}}
-#### Subject :
+### Subject :
 {{$support->subject}}
-##### Description :
+### Description :
 {{$support->description}}
 
 Thanks,<br>
