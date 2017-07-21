@@ -15,6 +15,7 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         'App\Events\SupportRequestReceived' => [
             'App\Listeners\SendEmailToSupport',
+            'App\Listeners\CreateAirtableRecord',
         ],
     ];
 

@@ -48,6 +48,7 @@ class SupportController extends Controller
 
             $createdTicket = $this->support->create($request->all());
 
+            //Lets broadcast the ticket creation event
             event(new SupportRequestReceived($createdTicket));
 
             return $this->jsonResponse('Support request created successfully', $createdTicket);
