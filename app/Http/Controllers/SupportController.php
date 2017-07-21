@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\SupportRequestReceived;
 use App\Http\ApiResponse;
 use App\Repositories\Contracts\SupportRepositoryInterface;
 use Illuminate\Http\JsonResponse;
@@ -46,6 +47,9 @@ class SupportController extends Controller
             ]);
 
             $createdTicket = $this->support->create($request->all());
+
+            event(new SupportRequestReceived($createdTicket));
+
             return $this->jsonResponse('Support request created successfully', $createdTicket);
 
         } catch (ValidationException $e) {
