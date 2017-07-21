@@ -10,9 +10,9 @@ class SupportTest extends TestCase
 
     /**
      * @test
-     * @group feedback
+     * @group support
      */
-    public function any_user_can_post_a_feedback()
+    public function any_user_can_post_a_support_request()
     {
         $ticketData = $this->templateTicket();
         $response = $this->post('/api/support', $ticketData);
@@ -30,6 +30,24 @@ class SupportTest extends TestCase
             ->assertStatus(200);
 
         $this->assertDatabaseHas('support', ['subject' => $ticketData['subject']]);
+    }
+
+    /**
+     * @test
+     * @group support
+     */
+    public function all_the_fields_are_required_to_create_a_support_request()
+    {
+        $ticketData = $this->templateTicket();
+        unset($ticketData['name']);
+        $response = $this->post('/api/support', $ticketData);
+        $response->assertJsonStructure([
+            'message',
+            'errors'
+        ])
+            ->assertStatus(422);
+
+        $this->assertDatabaseMissing('support', ['subject' => $ticketData['subject']]);
     }
 
     /**
