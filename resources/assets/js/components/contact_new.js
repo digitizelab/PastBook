@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
+import { toast } from 'react-toastify';
 
 import {renderField, renderTextArea} from "./form_components"
 import {submitRequest} from "../actions/index";
@@ -12,9 +13,12 @@ class ContactNew extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    onSubmit(values) {
-        this.props.submitRequest(values, () => {
 
+    onSubmit(values) {
+
+        this.props.submitRequest(values, () => {
+            toast(<div>Request sent successfully!</div>);
+            this.props.history.push('/');
         });
     };
 

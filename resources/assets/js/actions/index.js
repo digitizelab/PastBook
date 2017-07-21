@@ -14,7 +14,8 @@ export const SUBMIT_REQUEST = 'SUBMIT_REQUEST';
 const ROOT_URL = '/api';
 
 export function submitRequest(values, callback) {
-    const request = axios.post(`${ROOT_URL}/request`, values)
+    //TODO need to handle server side validation
+    const request = axios.post(`${ROOT_URL}/support`, values)
         .then(() => callback());
 
     return {
