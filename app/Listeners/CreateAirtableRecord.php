@@ -6,7 +6,7 @@ use App\Events\SupportRequestReceived;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class CreateAirtableRecord
+class CreateAirtableRecord implements ShouldQueue
 {
     /**
      * Create the event listener.

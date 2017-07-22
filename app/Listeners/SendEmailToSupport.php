@@ -29,6 +29,6 @@ class SendEmailToSupport
     public function handle(SupportRequestReceived $event)
     {
         //We'll email the user about the new support request here
-        Mail::to(env('SUPPORT_MAIL'))->send(new SupportRequest($event->support));
+        Mail::to(env('SUPPORT_MAIL'))->queue(new SupportRequest($event->support));
     }
 }
