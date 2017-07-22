@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
         case SUBMIT_REQUEST:
-            return {...state, supportCreated: true};
+            return {...state, supportCreated: true, error: undefined};
         case SUBMIT_FAILED:
             if (action.payload.status === 422) {
                 return {...state, error: action.payload.data.errors};

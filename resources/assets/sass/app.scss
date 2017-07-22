@@ -9,3 +9,19 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 @import 'node_modules/react-toastify/src/scss/main';
+
+@import "photobook";
+
+@import "home";
+
+body {
+  padding-top: 50px;
+}
+
+.toastify{
+  z-index: 9999;
+}
+
+footer {
+  margin: 50px 0;
+}

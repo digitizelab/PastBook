@@ -14,3 +14,5 @@ use Illuminate\Http\Request;
 */
 
 Route::post('/support', ['uses' => 'SupportController@store'])->name('api.post.support');
+
+Route::get("/instagram", ['uses' => 'InstagramController@getMedia'])->name('api.get.instagram');

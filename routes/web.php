@@ -14,4 +14,7 @@
 // Match all routes except api to index so that react router and do frontend routing
 Route::get("{url}",  function() {
     return view("app");
-})->middleware(['web'])->where("url", "^((?!api).)*$");
+})->middleware(['web'])->where("url", "^((?!api|authenticate).)*$");
+
+Route::get("/authenticate/instagram", ['uses' => 'SocialController@instragram'])->name('web.get.instagram');
+Route::get("/authenticate/instagram/callback", ['uses' => 'SocialController@instragramCallback'])->name('web.get.instagram.callback');

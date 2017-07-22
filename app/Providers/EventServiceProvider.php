@@ -17,6 +17,9 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\SendEmailToSupport',
             'App\Listeners\CreateAirtableRecord',
         ],
+        'SocialiteProviders\Manager\SocialiteWasCalled' => [
+            'SocialiteProviders\Instagram\InstagramExtendSocialite@handle',
+        ]
     ];
 
     /**
