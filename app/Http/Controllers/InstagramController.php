@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\ApiResponse;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,12 @@ class InstagramController extends Controller
     use ApiResponse;
 
 
-    public function getMedia(Request $request)
+    /**
+     * Fetches and returns authenticated users media
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getMedia(Request $request): JsonResponse
     {
         try {
 

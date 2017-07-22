@@ -16,11 +16,20 @@ class SocialController extends Controller
     use ApiResponse;
 
 
+    /**
+     * Redirect to Instagram auth page
+     * @return mixed
+     */
     public function instragram()
     {
         return Socialite::with('instagram')->redirect();
     }
 
+    /**
+     * Receive the Instagram callback and send cookie with the access token
+     * @param Request $request
+     * @return $this
+     */
     public function instragramCallback(Request $request)
     {
         $user = Socialite::driver('instagram')->user();

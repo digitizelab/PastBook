@@ -2,7 +2,12 @@
 
 if (!function_exists('createAirtableRecord')) {
 
-    function createAirtableRecord(array $payload)
+    /**
+     * Persist the support request in Airtable
+     * @param array $payload
+     * @return array
+     */
+    function createAirtableRecord(array $payload): array
     {
         $client = new \GuzzleHttp\Client();
         try {
@@ -13,7 +18,7 @@ if (!function_exists('createAirtableRecord')) {
                 'json' => ["fields" => $payload]
             ]);
 
-            return $response;
+            return json_decode($response->getBody()->getContents());
         } catch (\GuzzleHttp\Exception\ClientException $e) {
             //TODO Handle the error
         }
@@ -22,7 +27,14 @@ if (!function_exists('createAirtableRecord')) {
 
 if (!function_exists('getRecentInstagramMedia')) {
 
-    function getRecentInstagramMedia(string $access_token, int $limit = 10, string $max_id = null)
+    /**
+     * Get recent media feed of the authenticated user
+     * @param string $access_token
+     * @param int $limit
+     * @param string|null $max_id
+     * @return array
+     */
+    function getRecentInstagramMedia(string $access_token, int $limit = 10, string $max_id = null) :array
     {
         $params = [
             'access_token' => $access_token,

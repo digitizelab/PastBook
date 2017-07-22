@@ -15,7 +15,11 @@ class SupportRequestReceived
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    /**
+     * @var Support
+     */
     public $support;
+
     /**
      * Create a new event instance.
      * @param Support $support

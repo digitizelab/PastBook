@@ -19,7 +19,7 @@ class CreateAirtableRecord implements ShouldQueue
     }
 
     /**
-     * Handle the event.
+     * Persist the record in Airtable - will be added to the queue
      *
      * @param  SupportRequestReceived $event
      * @return void

@@ -21,7 +21,7 @@ class SendEmailToSupport
     }
 
     /**
-     * Handle the event.
+     * Queue the mail to be send to the support email address
      *
      * @param  SupportRequestReceived  $event
      * @return void
