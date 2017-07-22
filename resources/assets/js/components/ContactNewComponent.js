@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
-import {connect} from 'react-redux';
-import { toast } from 'react-toastify';
+import {toast} from 'react-toastify';
 
 import {renderField, renderTextArea} from "./form_components"
-import {submitRequest} from "../actions/index";
 
 class ContactNew extends Component {
     constructor(props) {
@@ -13,9 +11,7 @@ class ContactNew extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-
     onSubmit(values) {
-
         this.props.submitRequest(values, () => {
             toast(<div>Request sent successfully!</div>);
             this.props.history.push('/');
@@ -24,6 +20,7 @@ class ContactNew extends Component {
 
     render() {
         const {handleSubmit} = this.props;
+        const serverErrors = this.props.supportRequest.error;
 
         return (
             <div>
@@ -31,21 +28,25 @@ class ContactNew extends Component {
                     <Field
                         name="name"
                         label="Name"
+                        serverError={(serverErrors && serverErrors.name) ? serverErrors.name : ''}
                         component={renderField}
                     />
                     <Field
                         name="email"
                         label="Email"
+                        serverError={(serverErrors && serverErrors.email) ? serverErrors.email : ''}
                         component={renderField}
                     />
                     <Field
                         name="subject"
                         label="Subject"
+                        serverError={(serverErrors && serverErrors.subject) ? serverErrors.subject : ''}
                         component={renderField}
                     />
                     <Field
                         name="description"
                         label="Description"
+                        serverError={(serverErrors && serverErrors.description) ? serverErrors.description : ''}
                         component={renderTextArea}
                     />
                     <input type="submit" className="btn btn-primary" value="Submit"/>
@@ -67,7 +68,7 @@ function validate(values) {
     if (!values.subject) {
         errors.subject = "Please enter a subject"
     }
-    if(!values.description){
+    if (!values.description) {
         errors.description = "Please describe the issue/request"
     }
 
@@ -77,6 +78,4 @@ function validate(values) {
 export default reduxForm({
     validate,
     form: 'ContactForm'
-})(
-    connect(null, {submitRequest})(ContactNew)
-);
+})(ContactNew);

@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const renderField = (field) => {
-    const {meta: {touched, error}} = field;
+    const {meta: {touched, error}, serverError} = field;
     const className = `form-group row ${touched && error ? 'has-error' : ''}`;
     const {name} = field.input;
 
@@ -9,7 +9,9 @@ export const renderField = (field) => {
         <div className={className}>
             <label className="col-sm-4 col-form-label">{field.label}</label>
             <div className="col-sm-8">
-                <label className="control-label" htmlFor={name}>{touched ? error : ''}</label>
+                {(touched && error) ? <label className="control-label" htmlFor={name}>{error}</label> : null}
+                {(serverError && serverError[0]) ?
+                    <label className="control-label" htmlFor={name}>{serverError[0]}</label> : null}
                 <input
                     className="form-control"
                     type="text"
@@ -22,7 +24,7 @@ export const renderField = (field) => {
 };
 
 export const renderTextArea = (field) => {
-    const {meta: {touched, error}} = field;
+    const {meta: {touched, error}, serverError} = field;
     const className = `form-group row ${touched && error ? 'has-error' : ''}`;
     const {name} = field.input;
 
@@ -30,7 +32,9 @@ export const renderTextArea = (field) => {
         <div className={className}>
             <label className="col-sm-4 col-form-label">{field.label}</label>
             <div className="col-sm-8">
-                <label className="control-label" htmlFor={name}>{touched ? error : ''}</label>
+                {(touched && error) ? <label className="control-label" htmlFor={name}>{error}</label> : null}
+                {(serverError && serverError[0]) ?
+                    <label className="control-label" htmlFor={name}>{serverError[0]}</label> : null}
                 <textarea
                     className="form-control"
                     type="text"

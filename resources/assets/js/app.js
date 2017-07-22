@@ -7,13 +7,13 @@ import promise from 'redux-promise';
 import { ToastContainer } from 'react-toastify';
 
 import App from './components/app';
-import ContactNew from './components/contact_new';
+import ContactNew from './actions/ContactActions';
 import reducers from './reducers';
 
-const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+import store from './reducers/index'
 
 ReactDOM.render(
-    <Provider store={createStoreWithMiddleware(reducers)}>
+    <Provider store={store}>
         <BrowserRouter>
             <div>
                 <Switch>
