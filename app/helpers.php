@@ -5,9 +5,9 @@ if (!function_exists('createAirtableRecord')) {
     /**
      * Persist the support request in Airtable
      * @param array $payload
-     * @return array
+     * @return mixed
      */
-    function createAirtableRecord(array $payload): array
+    function createAirtableRecord(array $payload)
     {
         $client = new \GuzzleHttp\Client();
         try {
@@ -32,9 +32,9 @@ if (!function_exists('getRecentInstagramMedia')) {
      * @param string $access_token
      * @param int $limit
      * @param string|null $max_id
-     * @return array
+     * @return mixed
      */
-    function getRecentInstagramMedia(string $access_token, int $limit = 10, string $max_id = null) :array
+    function getRecentInstagramMedia(string $access_token, int $limit = 10, string $max_id = null)
     {
         $params = [
             'access_token' => $access_token,
